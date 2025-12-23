@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformador de GeoJSON</title>
+    <link href="style.css" rel="stylesheet">
+     </head>
+<body class="bg-gray-50 min-h-screen p-4 sm:p-8 font-sans">
+
+    <div class="max-w-4xl mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">GeoJSON Transformer</h1>
+            <p class="text-lg text-gray-600">Convierte tu estructura GeoJSON de forma automática.</p>
+        </header>
+
+        <main class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-100">
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Columna de Entrada -->
+                <div>
+                    <label for="input-json" class="block text-sm font-medium text-gray-700 mb-2">1. Pega tu GeoJSON Original aquí:</label>
+                    <textarea id="input-json" rows="12" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150 shadow-inner" placeholder='Ejemplo: {"type": "FeatureCollection", ...}'></textarea>
+                    <button onclick="transformGeoJSON()" 
+                            class="mt-4 w-full bg-primary hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-[1.01] focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50">
+                        ✨ Transformar Datos
+                    </button>
+                    <p id="message" class="mt-3 text-sm text-red-600 hidden">Error: No se pudo procesar el JSON. Asegúrate de que sea válido.</p>
+                </div>
+
+                <!-- Columna de Salida -->
+                <div>
+                    <label for="output-json" class="block text-sm font-medium text-gray-700 mb-2">2. Salida lista para pegar (comienza con coma y sin corchetes):</label>
+                    <textarea id="output-json" rows="12" readonly class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 resize-none shadow-inner"></textarea>
+                    <button onclick="copyOutput()" id="copy-button"
+                            class="mt-4 w-full bg-accent hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-opacity-50 disabled:bg-gray-400" disabled>
+                        Copiar al Portapapeles
+                    </button>
+                </div>
+            </div>
+
+            <p class="mt-8 text-center text-sm text-gray-500">
+                Lógica aplicada: "Tipo de construccion" -> "tipo" | "Identificador de la unidad" -> "nombre" (Numérico) | "Número de Plan de Obra" -> "plan" | Coordenada Z eliminada.
+            </p>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
